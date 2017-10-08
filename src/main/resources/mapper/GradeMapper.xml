@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.habage.mapper.GradeMapper">
+  <resultMap id="grade_resultmap" type="com.habage.model.Grade">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="grade_nm" jdbcType="VARCHAR" property="gradeNm" />
+    <result column="teacher_id" jdbcType="INTEGER" property="teacherId" />
+  </resultMap>
+
+  <select id="getbyid_xml_sql" resultType="com.habage.model.Grade" resultMap="grade_resultmap">
+    SELECT
+    id,grade_nm,teacher_id
+    FROM grade a
+    WHERE a.id = #{id}
+  </select>
+
+    <select id="list_xml_sql" resultType="com.habage.model.Grade" resultMap="grade_resultmap">
+        SELECT
+        id,grade_nm,teacher_id
+        FROM grade a
+        <where>
+            <if test="id != null">
+                AND a.id = #{id}
+            </if>
+            <if test="gradeNm != null and gradeNm != ''">
+                AND a.grade_nm = #{gradeNm}
+            </if>
+            <if test="teacherId != null">
+                AND a.teacher_id = #{teacherId}
+            </if>
+        </where>
+    </select>
+</mapper>
