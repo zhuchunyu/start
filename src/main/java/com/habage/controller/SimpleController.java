@@ -20,7 +20,13 @@ public class SimpleController {
     Map<String, Object> home(HttpSession session) {
         Map<String, Object> result = Maps.newHashMap();
 
+        System.out.println("1");
         result.put("grade1", gradeService.getbyid_mapper(1));
+        System.out.println("2");
+        result.put("grade1", gradeService.getbyid_mapper(1));
+        System.out.println("end");
+
+        result.put("grade2", gradeService.getbyid_annotation_sql(1));
 
         result.put("grade2", gradeService.getbyid_annotation_sql(2));
 
